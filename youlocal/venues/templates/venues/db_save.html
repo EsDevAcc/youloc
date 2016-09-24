@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Saved venues</title>
+</head>
+<body>
+{% if ids %}
+Ids of successfuly saved venues:<br><br>
+    {% for id in ids  %}
+        id: {{id}} <br>
+    {% endfor %}
+{% else %}
+    <p>Venues are not saved into the db.</p>
+{% endif %}
+<br>
+<br>
+<a href="rest">Django rest from the celery task</a>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Venues</title>
+
+</head>
+<body>
+
+{% if venues %}
+
+<form action="/venues/save_venue/" method="post">
+    {% csrf_token %}
+
+    {% for v in venues  %}
+        Name: {{v.0.name}} <br>
+        Address: {{v.0.location.address}} <br>
+       {% if v.0.categories.0.primary == 'True' %} Category: {{v.0.categories.0.pluralName}} <br> {% endif %}
+        Distance: {{v.0.location.distance}}  meters<br>
+        <input type="checkbox" name="venue{{ forloop.counter }}" value="{{v.0}}">
+        <br><br>
+    {% endfor %}
+<input type="submit" value="Save venues" />
+</form>
+{% else %}
+    <p>No venues are available.</p>
+{% endif %}
+
+</body>
+</html>
